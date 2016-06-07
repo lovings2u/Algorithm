@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+ 
+public class Main{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt(), b = sc.nextInt();
+        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list2 = new ArrayList<Integer>();
+        for (int i = 0; i < a; i++) {
+            list.add(i, sc.nextInt()); 
+        }
+        for (int i = 0; i < a; i++) {
+            list2.add(i, b/list.get(i));
+        }
+        int max = 0, maxlist = 0;
+        for (int i = 0; i < a; i++) {
+            if(max<list2.get(i)){
+                max = list2.get(i);
+                maxlist = list2.indexOf(list2.get(i));
+            }
+        }
+        int big = list.get(maxlist) * max;
+        List<Integer> list3 = new ArrayList<Integer>();
+        for (int i = maxlist; i < a; i++) {
+            int next = list.get(i)*max;
+            if(big<next){
+                list3.add(next-big);
+            }
+        }
+        int max2 = 0;
+        for (int i = 0; i < list3.size(); i++) {
+            if(max2<=list3.get(i)){
+                max2 = list3.get(i);
+            }
+        }
+        System.out.println(max2);
+    }
+}
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int day = sc.nextInt();
+        int money = sc.nextInt();
+        int min = 2000, total = 0, gain = 0;
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < day; i++) {
+            list.add(i, sc.nextInt());
+            if(list.get(i) <= min){
+                min = list.get(i);
+            }
+            total = list.get(i)*(money/min) + (money%min) - money;
+            if(total>gain){
+                gain=total;
+            }
+        }
+        System.out.println(gain);
+    }
+}
+
+
