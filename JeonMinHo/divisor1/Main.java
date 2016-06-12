@@ -1,4 +1,4 @@
-package divisor1;
+spackage divisor1;
 
 import java.util.Scanner;
 
