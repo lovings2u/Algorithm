@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int k = sc.nextInt();
+        recur(k);
+    }
+    public static void recur(int num){
+        if(num == 0){
+            return;
+        }else{
+            recur((num-1)/2);
+        }
+        if(num%2==0){
+            System.out.print(7);
+        }else{
+            System.out.print(4);
+        }
+    }
+}

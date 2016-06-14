@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double A = sc.nextDouble(), B = sc.nextDouble(), C = sc.nextDouble();
+        double I = sc.nextDouble(), J = sc.nextDouble(), K = sc.nextDouble();
+        List<Double> list = new ArrayList<Double>();
+        list.add(A/I);      list.add(B/J);      list.add(C/K);
+        double min = 100;
+        for (int l = 0; l < list.size(); l++) {
+            if(min>list.get(l)){
+                min = list.get(l);
+            }
+        }
+        double result1 = A - (I*min);
+        double result2 = B - (J*min);
+        double result3 = C - (K*min);
+        System.out.println(String.format("%.6f", result1) + " " + String.format("%.6f", result2) + " " + String.format("%.6f", result3));
+    }
+}
