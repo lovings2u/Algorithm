@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class midp {//test11¿¡¼­ ½Ã°£ÃÊ°ú ¼öÁ¤¿¹Á¤ ¤·¤·
+public class midp {//test11ì—ì„œ ë°°ì—´ë²”ìœ„ì´ˆê³¼
 
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
@@ -27,6 +27,47 @@ public class midp {//test11¿¡¼­ ½Ã°£ÃÊ°ú ¼öÁ¤¿¹Á¤ ¤·¤·
 		if(midx[i]!=1||midy[i]!=1){}
 		else{count++;}}
 		System.out.println(count);	
+	}
+
+}
+
+import java.util.Scanner;
+
+public class midp2 {//test11ì—ì„œ ì‹œê°„ì´ˆê³¼ 
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		int n=sc.nextInt(),a=0;
+		int[] x=new int[n];
+		int[] y=new int[n];		
+		
+		for(int i=0;i<n;i++){
+			x[i]=sc.nextInt();
+			x[i]%=2;//ì…ë ¥ë˜ëŠ”ìˆ˜ê°€ í™€ì§ì¸ì§€ ì•Œìˆ˜ìˆë„ë¡
+			y[i]=sc.nextInt();
+			y[i]%=2;
+		}
+		//1+1,0+0ë©´ 0ì •ìˆ˜ì¢Œí‘œ 1+0ì´ë‚˜0+1ì•„ë©´  ì •ìˆ˜ì¢Œí‘œê°€ì•„ë‹˜
+		for(int i=0;i<n;i++){
+			if(x[i]==0&&y[i]==0){
+			for(int j=i+1;j<n;j++){
+				if(x[j]==0&&y[j]==0){
+				a++;}}}
+			if(x[i]==1&&y[i]==1){
+				for(int j=i+1;j<n;j++){
+					if(x[j]==1&&y[j]==1){
+					a++;}}}
+			if(x[i]==0&&y[i]==1){
+				for(int j=i+1;j<n;j++){
+					if(x[j]==0&&y[j]==1){
+					a++;}}}
+			if(x[i]==1&&y[i]==0){
+				for(int j=i+1;j<n;j++){
+					if(x[j]==1&&y[j]==0){
+					a++;}}}
+		}
+		
+		System.out.println(a);	
 	}
 
 }
