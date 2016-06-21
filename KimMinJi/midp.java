@@ -1,4 +1,4 @@
-import java.util.Scanner;
+/*import java.util.Scanner;
 
 public class midp {//test11에서 배열범위초과
 
@@ -71,3 +71,35 @@ public class midp2 {//test11에서 시간초과
 	}
 
 }
+*/
+import java.util.Scanner;
+
+public class midp2 {
+
+	public static void main(String[] args) {
+		Scanner sc= new Scanner(System.in);
+		int n=sc.nextInt(),x0y0=0,x1y0=0,x1y1=0,x0y1=0;
+		long a=0;
+		int[] x=new int[n];
+		int[] y=new int[n];		
+		
+		for(int i=0;i<n;i++){
+			x[i]=sc.nextInt();
+			x[i]%=2;//입력되는수가 홀짝인지 알수있도록
+			y[i]=sc.nextInt();
+			y[i]%=2;
+		}
+		//1+1,0+0면 0정수좌표 1+0이나0+1아면  정수좌표가아님
+		for(int i=0;i<n;i++){
+			if(x[i]==0&&y[i]==0){x0y0++;}			
+			if(x[i]==1&&y[i]==1){x1y1++;}				
+			if(x[i]==0&&y[i]==1){x0y1++;}				
+			if(x[i]==1&&y[i]==0){x1y0++;}
+				
+		}//각 경우의 수 별 조합을 더하면 총 개수
+		a=(x0y0*(x0y0-1))/2+(x1y1*(x1y1-1))/2+(x0y1*(x0y1-1))/2+(x1y0*(x1y0-1))/2;
+		System.out.println(a);	
+	}
+
+}
+
