@@ -57,33 +57,15 @@ public class Dart {
 		int[] score = {20, 1, 1, 18, 18, 4, 4, 13, 13, 6, 6, 10, 10, 15, 15, 2, 2, 17, 17, 3, 3, 19, 19, 7, 7, 16, 16, 8, 8, 11, 11, 14, 14, 9, 9, 12, 12, 5, 5, 20};
 		double tempG;
 		int result=0;
-		
-		if (x > 0) {
-			tempG = (double)y/x;
-			for (int i=0 ; i<20 ; i++) {
-				if (tempG > Math.tan(Math.toRadians(90-9*(i+1)))){
-					result = score[i];
-					break;
-				}
-			}
-		} else if (x < 0 && y < 0) {
-			tempG = (double)y/x;
-			for (int i=20 ; i<30 ; i++) {
-				if (tempG > Math.tan(Math.toRadians(90-9*(i+1)))){
-					result = score[i];
-					break;
-				}
-			}
-		} else if (x < 0 && y > 0) {
-			tempG = (double)y/x;
-			for (int i=30 ; i<40 ; i++) {
-				if (tempG > Math.tan(Math.toRadians(90-9*(i+1)))){
-					result = score[i];
-					break;
-				}
+
+		tempG = (double)y/x;
+		for (int i=0 ; i<40 ; i++) {
+			if (tempG > Math.tan(Math.toRadians(90-9*(i+1)))){
+				result = score[i];
+				break;
 			}
 		}
-		
+
 		if ( x == 0 ) {
 			if (y>0) { result = 20; }
 			else { result = 3; }
