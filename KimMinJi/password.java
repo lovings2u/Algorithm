@@ -1,3 +1,4 @@
+//ì´í´ë¦½ìŠ¤ì—ì„œ ëŒë¦¬ë©´ ë‹µì€ë§ëŠ”ë° ë°±ì¤€ì—ì„œ ëŒë¦¬ë©´ ëŸ°íƒ€ì„ì—ëŸ¬ìš”ã… _ã… 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ public class password {
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
 		ArrayList<String> alp = new ArrayList<String>();
-		alp.add(0, " ");//°ø¹éÀº 0
+		alp.add(0, " ");//ê³µë°±ì€ 0
 		alp.add(1, "a");alp.add(2, "b");
 		alp.add(3, "c");alp.add(4, "d");
 		alp.add(5, "e");alp.add(6, "a");
@@ -20,35 +21,35 @@ public class password {
 		alp.add(19, "s");alp.add(20, "t");
 		alp.add(21, "u");alp.add(22, "v");
 		alp.add(23, "w");alp.add(24, "x");
-		alp.add(25, "y");alp.add(26, "z");//alp arraylist¿¡ ÀÎµ¦½º¿Í ¾ËÆÄºª ÀÔ·Â
-		String sentence=sc.nextLine();//Æò¼­¹® ÀÔ·Â¹ŞÀ½
-		String password=sc.nextLine();//¾ÏÈ£È­Å° ÀÔ·Â¹ŞÀ½
-		String[] s=sentence.split("");//Æò¼­¹® ºĞÇÒ
-		String[] p=password.split("");//¾ÏÈ£È­Å° ºĞÇÒ
-		int [] pp=new int[p.length];//¾ÏÈ£È­Å°±æÀÌ¸¸Å­ Á¤¼öÇü¹è¿­»ı¼º
-		int [] ss=new int[s.length];//Æò¼­¹® ±æÀÌ¸¸Å­ Á¤¼öÇü¹è¿­»ı¼º
-		int [] result= new int[s.length];//°á°ú Ãâ·ÂÇÒ ¹è¿­,Æò¼­¹®±æÀÌ¸¸Å­ ÃÊ±âÈ­
+		alp.add(25, "y");alp.add(26, "z");//alp arraylistì— ì¸ë±ìŠ¤ì™€ ì•ŒíŒŒë²³ ì…ë ¥
+		String sentence=sc.nextLine();//í‰ì„œë¬¸ ì…ë ¥ë°›ìŒ
+		String password=sc.nextLine();//ì•”í˜¸í™”í‚¤ ì…ë ¥ë°›ìŒ
+		String[] s=sentence.split("");//í‰ì„œë¬¸ ë¶„í• 
+		String[] p=password.split("");//ì•”í˜¸í™”í‚¤ ë¶„í• 
+		int [] pp=new int[p.length];//ì•”í˜¸í™”í‚¤ê¸¸ì´ë§Œí¼ ì •ìˆ˜í˜•ë°°ì—´ìƒì„±
+		int [] ss=new int[s.length];//í‰ì„œë¬¸ ê¸¸ì´ë§Œí¼ ì •ìˆ˜í˜•ë°°ì—´ìƒì„±
+		int [] result= new int[s.length];//ê²°ê³¼ ì¶œë ¥í•  ë°°ì—´,í‰ì„œë¬¸ê¸¸ì´ë§Œí¼ ì´ˆê¸°í™”
 		
 		for(int i=0;i<pp.length;i++){
-			pp[i]=alp.indexOf(p[i]);}//¾ÏÈ£È­Å° ¹®ÀÚ¸¦ ¼ıÀÚ·Î º¯°æ			
+			pp[i]=alp.indexOf(p[i]);}//ì•”í˜¸í™”í‚¤ ë¬¸ìë¥¼ ìˆ«ìë¡œ ë³€ê²½			
 		
 		for(int i=0;i<ss.length;i++){
-			ss[i]=alp.indexOf(s[i]);}//Æò¼­¹® ¹®ÀÚ¸¦ ¼ıÀÚ·Î º¯°æ			
+			ss[i]=alp.indexOf(s[i]);}//í‰ì„œë¬¸ ë¬¸ìë¥¼ ìˆ«ìë¡œ ë³€ê²½			
 		int n=0;
 		for(int i=0;i<ss.length;i++){
 			for(int j=0;j<pp.length;j++){
-				result[n*pp.length+j]=ss[n*pp.length+j]-pp[j];//¾ÏÈ£¹®¸¸µé±â
+				result[n*pp.length+j]=ss[n*pp.length+j]-pp[j];//ì•”í˜¸ë¬¸ë§Œë“¤ê¸°
 				if(result[n*pp.length+j]==-1*pp[j]){
-					result[n*pp.length+j]=0;//°ø¹éÀÌ¸é °ø¹éÀ¸·Î Ãâ·Â
+					result[n*pp.length+j]=0;//ê³µë°±ì´ë©´ ê³µë°±ìœ¼ë¡œ ì¶œë ¥
 				}				
 				else if(result[n*pp.length+j]<=0){
-					result[n*pp.length+j]+=26;//Â÷ÀÌ°¡ 0º¸´Ù ÀÛ¾ÆÁö¸é +26
+					result[n*pp.length+j]+=26;//ì°¨ì´ê°€ 0ë³´ë‹¤ ì‘ì•„ì§€ë©´ +26
 				}									
 			}
 			i=(n+1)*pp.length+1;n++;}
 		
 		for(int i=0;i<result.length;i++){
-			System.out.print(alp.get(result[i]));//ÀÎµ¦½º¸¦ ´Ù½Ã ¹®ÀÚ¿­·Î Ãâ·Â
+			System.out.print(alp.get(result[i]));//ì¸ë±ìŠ¤ë¥¼ ë‹¤ì‹œ ë¬¸ìì—´ë¡œ ì¶œë ¥
 		}	
 	
 	}
