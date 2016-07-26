@@ -14,10 +14,8 @@ public class Main {
 
 		int except = 0;
 
-		double[][] person = new double[n][2];
 		double[] distanceR1 = new double[n];
 		double[] distanceR2 = new double[n];
-		double maximum = 0;
 		boolean aOrb = true; // true = a, false = b
 		for (int i = 0; i < n; i++) {
 			double x = sc.nextDouble();
@@ -38,18 +36,19 @@ public class Main {
 			double temp = 0;
 			temp = Math.sqrt(k - Math.pow(distanceR1[i], 2));
 			for (int j = 0; j < n; j++) {
-				if (distanceR1[j] > distanceR1[i])
+				if (distanceR1[j] > temp)
 					list1.add(j);
 				if (distanceR2[j] > temp)
 					list2.add(j);
 			}
 			minimum = Math.min(list1.size() + list2.size(), minimum);
 		}
+
 		System.out.println(minimum + except);
 
 	}
 
-	private static double getDistance(double x1, double y1, double x2, double y2) {
+	private static double getDistance(double x1, double x2, double y1, double y2) {
 		return Math.sqrt(Math.pow(Math.abs(x2 - x1), 2) + Math.pow(Math.abs(y2 - y1), 2));
 	}
 }
