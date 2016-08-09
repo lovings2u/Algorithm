@@ -15,17 +15,16 @@ public class practice {
 	static boolean canvisit[][];
 	public static void main(String args[]){
 		Scanner sc = new Scanner(System.in);
-		a = sc.nextInt();
 		b = sc.nextInt();
+		a = sc.nextInt();
 		tray = new int[a][b];
 		canvisit = new boolean[a][b];
 		for(int i = 0; i<a ; i++){
 			for(int j = 0; j<b ; j++){
 				tray[i][j] = sc.nextInt();
-				if((tray[i][j] == -1)||(tray[i][j] == 1)) canvisit[i][j] = false; //-1ÀÌ°Å³ª 1ÀÌ¸é µé¾î°¥ ÇÊ¿ä¾ø´Ù.
+				if((tray[i][j] == -1)||(tray[i][j] == 1)) canvisit[i][j] = false; //-1ì´ê±°ë‚˜ 1ì´ë©´ ë“¤ì–´ê°ˆ í•„ìš”ì—†ë‹¤.
 				else canvisit[i][j] = true; 
 			}
-			System.out.println(i);
 		}
 		
 		System.out.println(String.valueOf(bfs()));
@@ -34,43 +33,43 @@ public class practice {
 	public static int bfs(){
 		boolean allclear = true;
 		int lastday=0;
-		for(int i = 0; i<=a ; i++){//¾ÈÀÍÀºÅä¸¶Åä Áï '0'ÀÌ ¾ø´ÂÁö È®ÀÎ(¸ðµç Åä¸¶Åä°¡ ÀÍÀº »óÅÂ·Î ÁÖÀÔ)
-			for(int j = 0; j<=b ; j++){
-				if(tray[i][j]==1){//ÀÍ¾îÀÖ´Â ¸ðµç Åä¸¶Åä¸¦ Çª½ÃÇÑ´Ù.
-					push(new Tomato(i,j,0));//Ã¹³¯ = 0;
+		for(int i = 0; i<a ; i++){//ì•ˆìµì€í† ë§ˆí†  ì¦‰ '0'ì´ ì—†ëŠ”ì§€ í™•ì¸(ëª¨ë“  í† ë§ˆí† ê°€ ìµì€ ìƒíƒœë¡œ ì£¼ìž…)
+			for(int j = 0; j<b ; j++){
+				if(tray[i][j]==1){//ìµì–´ìžˆëŠ” ëª¨ë“  í† ë§ˆí† ë¥¼ í‘¸ì‹œí•œë‹¤.
+					push(new Tomato(i,j,0));//ì²«ë‚  = 0;
 				}
-				else if(allclear&&(tray[i][j]==0)) allclear = false;//ÀüºÎ 1 ¶Ç´Â -1 ÀÌ¸é if¹®ÀÌ ¹«½ÃµÈ´Ù.
+				else if(allclear&&(tray[i][j]==0)) allclear = false;//ì „ë¶€ 1 ë˜ëŠ” -1 ì´ë©´ ifë¬¸ì´ ë¬´ì‹œëœë‹¤.
 			}
 		}
-		if(allclear) return 0;//À§ÀÇ if ¹®ÀÌ ½ÇÇàµÇ¸é ±×³É Áö³ªÄ§
+		if(allclear) return 0;//ìœ„ì˜ if ë¬¸ì´ ì‹¤í–‰ë˜ë©´ ê·¸ëƒ¥ ì§€ë‚˜ì¹¨
 		
 		while(true){
-			Tomato t = pop();//ÆË ÇÑ µÚ 4¹æÀ§ Ã¼Å© ÈÄ Çª½Ã
+			Tomato t = pop();//íŒ í•œ ë’¤ 4ë°©ìœ„ ì²´í¬ í›„ í‘¸ì‹œ
 			if(t == null){
 				break;
 			}
-			if(canvisit[t.a-1][t.b]&&(t.a!=0)){//¸·ÇôÀÖ´Â°¡?&&¸ÇÀ­ÁÙÀÎ°¡?
+			if((t.a!=0)&&canvisit[t.a-1][t.b]){//ë§‰í˜€ìžˆëŠ”ê°€?&&ë§¨ìœ—ì¤„ì¸ê°€?
 				push(new Tomato(t.a-1,t.b,t.day+1));
 				canvisit[t.a-1][t.b] = false;
 			}
-			if(canvisit[t.a+1][t.b]&&(t.a!=(a-1))){//¾Æ·¡
+			if((t.a!=(a-1)&&canvisit[t.a+1][t.b])){//ì•„ëž˜
 				push(new Tomato(t.a+1,t.b,t.day+1));
 				canvisit[t.a+1][t.b] = false;
 			}
-			if(canvisit[t.a][t.b-1]&&(t.b!=0)){//¿ÞÂÊ
+			if((t.b!=0)&&canvisit[t.a][t.b-1]){//ì™¼ìª½
 				push(new Tomato(t.a,t.b-1,t.day+1));
 				canvisit[t.a][t.b-1] = false;
 			}
-			if(canvisit[t.a][t.b+1]&&(t.b!=(b-1))){//¿À¸¥ÂÊ
+			if((t.b!=(b-1)&&canvisit[t.a][t.b+1])){//ì˜¤ë¥¸ìª½
 				push(new Tomato(t.a,t.b+1,t.day+1));
 				canvisit[t.a][t.b+1] = false;
 			}
 			lastday = t.day;
 		}
 		
-		for(int i = 0; i<=a ; i++){//Å¥°¡ ºñ¾ú´Âµ¥ ÀÍÁö ¾ÊÀº Åä¸¶Åä°¡ ÀÖ´Ù¸é(¸ðµç Åä¸¶Åä°¡ ÀÍÁö ¸øÇÏ´Â »óÈ²)
-			for(int j = 0; j<=b ; j++){
-				if(tray[i][j]==0) return -1;
+		for(int i = 0; i<a ; i++){//íê°€ ë¹„ì—ˆëŠ”ë° ìµì§€ ì•Šì€ í† ë§ˆí† ê°€ ìžˆë‹¤ë©´(ëª¨ë“  í† ë§ˆí† ê°€ ìµì§€ ëª»í•˜ëŠ” ìƒí™©)
+			for(int j = 0; j<b ; j++){
+				if(canvisit[i][j]) return -1;
 			}
 		}
 		return lastday;
@@ -81,6 +80,9 @@ public class practice {
 		rear++;
 	}
 	public static Tomato pop(){//dequeue
+		if(front>rear){
+			return null;
+		}
 		Tomato t = box.get(front);
 		front++;
 		return t;
