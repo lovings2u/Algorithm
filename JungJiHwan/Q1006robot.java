@@ -50,19 +50,19 @@ public class Q1006robot {
 			
 			if((a == end.a) && (b == end.b)) leasttime = leasttime < time+turntime(look, end.look) ? leasttime : time+turntime(look,end.look);
 			
-//			System.out.println((a+1)+"Çà "+(b+1)+"¿­//º¸´Â¹æÇâ : "+look+" È½¼ö : "+ time);
+//			System.out.println((a+1)+"í–‰ "+(b+1)+"ì—´//ë³´ëŠ”ë°©í–¥ : "+look+" íšŸìˆ˜ : "+ time);
 			
-			if(b>0&&canvisit[a][b-1]&&((look!=1)||isfirst)){//¿ÞÂÊ
+			if(b>0&&canvisit[a][b-1]&&((look!=1)||isfirst)){//ì™¼ìª½
 				push(a, b-1, 2, time+1+turntime(look,2));
-				if(b>1&&canvisit[a][b-2]){//À§2
+				if(b>1&&canvisit[a][b-2]){//ìœ„2
 					push(a, b-2, 2, time+1+turntime(look,2));
-					if(b>2&&canvisit[a][b-3]){//À§3
+					if(b>2&&canvisit[a][b-3]){//ìœ„3
 						push(a, b-3, 2, time+1+turntime(look,2));
 					}
 				}
 			}
 			
-			if(b<duf-1&&canvisit[a][b+1]&&((look!=2)||isfirst)){//¿À¸¥ÂÊ
+			if(b<duf-1&&canvisit[a][b+1]&&((look!=2)||isfirst)){//ì˜¤ë¥¸ìª½
 				push(a, b+1, 1, time+1+turntime(look,1));
 				if(b<duf-2&&canvisit[a][b+2]){
 					push(a, b+2, 1, time+1+turntime(look,1));
@@ -72,7 +72,7 @@ public class Q1006robot {
 				}
 			}
 			
-			if(a>0&&canvisit[a-1][b]&&((look!=3)||isfirst)){//À§
+			if(a>0&&canvisit[a-1][b]&&((look!=3)||isfirst)){//ìœ„
 				push(a-1, b, 4, time+1+turntime(look,4));
 				if(a>1&&canvisit[a-2][b]){
 					push(a-2, b, 4, time+1+turntime(look,4));
@@ -82,7 +82,7 @@ public class Q1006robot {
 				}
 			}
 			
-			if(a<god-1&&canvisit[a+1][b]&&((look!=4)||isfirst)){//¾Æ·¡
+			if(a<god-1&&canvisit[a+1][b]&&((look!=4)||isfirst)){//ì•„ëž˜
 				push(a+1, b, 3, time+1+turntime(look,3));
 				if(a<god-2&&canvisit[a+2][b]){
 					push(a+2, b, 3, time+1+turntime(look,3));
@@ -93,7 +93,7 @@ public class Q1006robot {
 			}
 
 	
-			isfirst = false;
+			if(isfirst) isfirst = false;
 		}
 		return leasttime;
 	}
