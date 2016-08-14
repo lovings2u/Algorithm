@@ -27,13 +27,6 @@ public class Q1006robot {
 				if(k==0) canvisit[i][j] = true;
 			}
 		}
-		System.out.println("");
-//		for(int i = 0; i<god; i++){
-//			for(int j = 0; j<duf; j++){
-//				System.out.print(canvisit[i][j]+"\t");
-//			}
-//			System.out.println("");
-//		}
 		push(sc.nextInt()-1, sc.nextInt()-1, sc.nextInt(), 0);
 		end = new Robot(sc.nextInt()-1, sc.nextInt()-1, sc.nextInt(), 0);
 		System.out.println(String.valueOf(bfs()));
