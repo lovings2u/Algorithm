@@ -34,7 +34,7 @@ public class Q1006robot {
 	
 	static int bfs(){
 		int k = 0;
-		while(k<99999){
+		while(k<999999){
 			k++;
 			Robot robot = pop();
 			if(robot == null) return leasttime;
