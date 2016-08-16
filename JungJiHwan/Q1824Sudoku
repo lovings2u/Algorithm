@@ -1,0 +1,261 @@
+import java.util.*;
+
+public class Q1824Sudoku {
+	static int map[][], square[][], zerocount, starta = 0, startb = 0;
+	public static void main(String args []){
+		Scanner sc = new Scanner(System.in);
+		
+		map = new int[9][9];
+		square = new int[3][3];
+		
+		for(int i = 0; i<9; i++){
+			for(int j = 0; j<9; j++){
+				map[i][j] = sc.nextInt();
+			}
+		}
+		
+		backtracking();
+		for(int i = 0; i<9; i++){
+			for(int j = 0; j<9; j++){
+				System.out.print(map[i][j]+" ");
+			}
+			if(i!=8)System.out.println("");
+		}
+		sc.close();
+	}
+	
+	
+	
+	
+	
+	
+	static void backtracking(){
+		int time = 0;
+		while(time++<1000){
+			for(int i =0; i<9; i++){
+				verticalcheck(i);
+			}
+			for(int i =0; i<9; i++){
+				horizontalcheck(i);
+			}
+			if(time>=100){
+				if(time%10==0) squarecheck();
+			}
+			if(iscomplete()) break;
+		}
+	}
+	
+	
+	
+	
+	static boolean iscomplete(){
+		for(int i = 0; i<9; i++){
+			for(int j =0; j<9; j++){
+				if(map[i][j] == 0) return false;
+			}
+		}
+		return true;
+	}
+
+	static void verticalcheck(int line){
+		boolean k[] = new boolean[9];
+		zerocount = 0;
+		for(int i = 0; i<9; i++){
+			if(map[line][i]==0) zerocount++;
+			else k[map[line][i]-1] = true;
+		}
+		if(zerocount ==1){
+			int changeint = 0;
+			for(int i =0;i<9;i++){
+				if(k[i] == false) changeint = i+1; 
+			}
+			for(int i =0;i<9;i++){
+				if(map[line][i]==0) map[line][i] = changeint;
+			}
+		}
+	}
+	
+	static void horizontalcheck(int line){
+		boolean k[] = new boolean[9];
+		zerocount = 0;
+		for(int i = 0; i<9; i++){
+			if(map[i][line]==0) zerocount++;
+			else k[map[i][line]-1] = true;
+		}
+		if(zerocount ==1){
+			int changeint = 0;
+			for(int i =0;i<9;i++){
+				if(k[i] == false) changeint = i+1; 
+			}
+			for(int i =0;i<9;i++){
+				if(map[i][line]==0) map[i][line] = changeint;
+			}
+		}
+	}
+	
+	static void squarecheck(){
+		zerocount = 0;
+////////////////////////////////////////////////////////////////////
+		for(int r = 0, z = 0, i = 0; i<3; i++){
+			for(int j = 0; j<3; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(1);
+		for(int r = 0, z = 0, i = 0; i<3; i++){
+			for(int j = 3; j<6; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(2);
+		for(int r = 0, z = 0, i = 0; i<3; i++){
+			for(int j = 6; j<9; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(3);
+		
+/////////////////////////////////////////////////////////////////////
+		for(int r = 0, z = 0, i = 3; i<6; i++){
+			for(int j = 0; j<3; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(4);
+		for(int r = 0, z = 0, i = 3; i<6; i++){
+			for(int j = 3; j<6; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(5);
+		for(int r = 0, z = 0, i = 3; i<6; i++){
+			for(int j = 6; j<9; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(6);
+		
+///////////////////////////////////////////////////////////////////////
+		for(int r = 0, z = 0, i = 6; i<9; i++){
+			for(int j = 0; j<3; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(7);
+		for(int r = 0, z = 0, i = 6; i<9; i++){
+			for(int j = 3; j<6; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(8);
+		for(int r = 0, z = 0, i = 6; i<9; i++){
+			for(int j = 6; j<9; j++){
+				square[r][z++] = map[i][j];
+			}
+			r++;
+			z=0;
+		}
+		fill(9);
+		
+		
+	}
+	
+	static void fill(int block){
+		boolean k[] = new boolean[9];
+		zerocount = 0;
+		for(int i = 0; i<3; i++){
+			for(int j =0; j<3; j++){
+				if(square[i][j] == 0) zerocount++;
+				else k[square[i][j]-1] = true;
+			}
+		}
+		if(zerocount ==1){
+			int changeint = 0;
+			for(int i =0;i<9;i++){
+				if(k[i] == false) changeint = i+1; 
+			}
+			for(int i =0;i<3;i++){
+				for(int j = 0; j<3; j++){
+					if(square[i][j] == 0){ 
+						mappoint(block, i, j);
+						map[startb][starta] = changeint;
+//						for(int q = 0; q <3; q++){
+//							for(int s =0; s<3; s++){
+//								System.out.print(square[q][s]+" ");
+//							}
+//							System.out.println("");
+//						}
+//						System.out.println((starta+1)+"행 " +(startb+1) +"열을 "+changeint+"로 바꾸었다");
+					}
+				}
+			}
+		}
+	}
+	static void mappoint(int block, int i, int j){
+		switch(block){
+		case 1:{
+			starta = 0;
+			startb = 0;
+			break;
+		}
+		case 2:{
+			starta = 3;
+			startb = 0;
+			break;
+		}
+		case 3:{
+			starta = 6;
+			startb = 0;
+			break;
+		}
+		case 4:{
+			starta = 0;
+			startb = 3;
+			break;
+		}
+		case 5:{
+			starta = 3;
+			startb = 3;
+			break;
+		}
+		case 6:{
+			starta = 6;
+			startb = 3;
+			break;
+		}
+		case 7:{
+			starta = 0;
+			startb = 6;
+			break;
+		}
+		case 8:{
+			starta = 3;
+			startb = 6;
+			break;
+		}
+		case 9:{
+			starta = 6;
+			startb = 6;
+			break;
+		}
+		}
+		starta += i;
+		startb += j;
+	}
+}
