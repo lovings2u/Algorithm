@@ -3,7 +3,7 @@ package sdoku;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Sdoku implements Cloneable {
+public class Sdoku {
 
 	static int[][] input;
 
